@@ -13,5 +13,5 @@ pip install -r requirements.txt
 ```
 
 ```
-python manage.py runserver
+python ./tripadvisor/manage.py runserver
 ```
