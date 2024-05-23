@@ -1,0 +1,51 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+{% if success == False %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Generate Trip</h1>
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="start_date">Start Date</label>
+                        <input type="date" class="form-control" id="start_date" name="start_date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="end_date">End Date</label>
+                        <input type="date" class="form-control" id="end_date" name="end_date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="budget">Budget</label>
+                        <input type="number" class="form-control" id="budget" name="budget" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <input type="text" class="form-control" id="city" name="city" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Generate Trip</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% else %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Generate Trip</h1>
+                <hr>
+                <h3>Here are your trip details:</h3>
+                <p>Start Date: {{ start_date }}</p>
+                <p>End Date: {{ end_date }}</p>
+                <p>Budget: {{ budget }}</p>
+                <p>City: {{ city }}</p>
+                <p>Prompt: {{ prompt }}</p>
+                <p>{{ recommendation }}</p>
+                <a href="{% url 'generate' %}" class="btn btn-primary">Generate Another Trip</a>
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% endblock content %}
