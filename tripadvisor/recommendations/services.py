@@ -14,12 +14,14 @@ class generateTripRecommendation():
         self.recommendation = self.generateRecommendation()
     
     def generateContext(self, query):
+        print('Searching vector DB for context...')
         vector_db = VectorDatabase()
         vector_db.createCollection('recommendations')
         similar_text = vector_db.searchQuery('recommendations', query)
         context = ''
         for i in range(len(similar_text)):
             context += f"{i+1}. {similar_text[i]['text']}\n"
+        print('Context generated')
         return context
 
     def generatePrompt(self):
@@ -28,5 +30,7 @@ class generateTripRecommendation():
         return f"Here is the information we already have:\n{context}\nAnswer the following question: {query}\n" 
     
     def generateRecommendation(self):
+        print('Generating recommendations through generative AI...')
         ai = generativeAI(self.prompt)
+        print('Recommendations generated')
         return ai.generateResponse()

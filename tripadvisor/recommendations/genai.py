@@ -1,11 +1,12 @@
 # Generative AI results based on imput prompts
 from transformers import AutoModelForCausalLM, AutoTokenizer
+from django.apps import apps
 
 class generativeAI():
     def __init__(self, prompt):
         self.prompt = prompt
-        self.model = AutoModelForCausalLM.from_pretrained("gpt2")
-        self.tokenizer = AutoTokenizer.from_pretrained("gpt2")
+        self.model = apps.get_app_config('recommendations').model
+        self.tokenizer = apps.get_app_config('recommendations').tokenizer
         self.generateResponse()
     
     def generateResponse(self):

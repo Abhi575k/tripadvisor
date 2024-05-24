@@ -5,6 +5,7 @@ from qdrant_client import QdrantClient
 from qdrant_client.http.models import PointStruct, VectorParams
 from sentence_transformers import SentenceTransformer
 from django.conf import settings
+from django.apps import apps
 
 # Class to interact with vector database.
 # Contains methods to insert, search and delete vectors.
@@ -13,7 +14,7 @@ class VectorDatabase():
         self.host = settings.QDRANT_HOST
         self.port=settings.QDRANT_PORT
         self.client = QdrantClient(host=settings.QDRANT_HOST, port=settings.QDRANT_PORT)
-        self.transformer = SentenceTransformer('all-MiniLM-L6-v2')
+        self.transformer = apps.get_app_config('recommendations').transformer
         self.size = 768
         self.distance = 'Cosine'
 
