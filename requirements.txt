@@ -1,3 +1,8 @@
 django
 djangorestframework
 uuid
+openai
+qdrant-client
+langchain
+langchain_community
+langchain_openai

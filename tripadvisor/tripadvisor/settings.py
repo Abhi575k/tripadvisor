@@ -90,6 +90,10 @@ DATABASES = {
     }
 }
 
+# Vector Database
+QDRANT_HOST = 'localhost'
+QDRANT_PORT = 6333
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

@@ -19,10 +19,11 @@ def generateRecommendation(request):
         if form.is_valid():
             form_instance = form.save(commit=False)
 
-            start_date = request.GET.get('start_date')
-            end_date = request.GET.get('end_date')
-            budget = request.GET.get('budget')
-            city = request.GET.get('city')
+            start_date = str(request.POST.get('start_date'))
+            end_date = str(request.POST.get('end_date'))
+            budget = str(request.POST.get('budget'))
+            city = str(request.POST.get('city'))
+            # print(start_date, end_date, budget, city)
             trip = generateTripRecommendation(start_date, end_date, budget, city)
             recommendation = trip.recommendation
 
