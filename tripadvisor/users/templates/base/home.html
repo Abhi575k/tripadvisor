@@ -1,0 +1,21 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<h1>Home</h1>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{message.tags}}">
+            {{message}}
+        </div>
+    {% endfor %}
+{% endif %}
+
+{% if request.user.is_authenticated %}
+    <p>Welcome {{request.user}}</p>
+{% else %}
+    <a href="{% url 'register' %}" class="btn btn-success">Register</a>
+{% endif %}
+
+{% endblock content %}

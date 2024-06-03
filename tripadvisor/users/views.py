@@ -1,8 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
 
+from .models import TripUser
 
+def homePage(request):
+    return render(request, 'base/home.html')
 
 # Create your views here.
-def register(request):
-    context = {}
-    return render(request, 'base/register.html', context)
+def registerUser(request):
+    return
